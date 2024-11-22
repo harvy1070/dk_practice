@@ -9,7 +9,6 @@ def create_html_table(source_file, output_file):
         # 원본 데이터 읽기
         df = pd.read_excel(source_file)
         
-        # HTML 시작
         html_content = """
         <!DOCTYPE html>
         <html>
