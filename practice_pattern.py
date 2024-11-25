@@ -3,8 +3,9 @@ class GetInput:
     @staticmethod
     def get_input():
         n, m = map(int, sys.stdin.readline().split())
+        sol_type = sys.stdin.readline().strip()
         board = [[0] * m for _ in range(n)]
-        return n, m, board
+        return n, m, sol_type, board
 
 class solution1:
     def __init__(self, n, m, board):
@@ -14,7 +15,7 @@ class solution1:
     
     def sol1(self):
         x, y = 0, 0
-        dir = 0  
+        dir = 0
         num = 1  
 
         dx = [0, 1, 0, -1]
@@ -65,15 +66,17 @@ class solution2:
         return self.board
 
 def main():
-    n, m, board = GetInput.get_input()
-
+    n, m, sol_type, board = GetInput.get_input()
+    
     spiral = solution1(n, m, board)
     diag = solution2(n, m, board)
 
-    print("===== Spiral =====")
-    print(spiral.sol1())
-    print("=====  Diag  =====")
-    print(diag.sol2())
+    if sol_type == 'spiral':
+        print("===== Spiral =====")
+        print(spiral.sol1())
+    elif sol_type == 'diag':
+        print("=====  Diag  =====")
+        print(diag.sol2())
 
 if __name__ == "__main__":
     main()
