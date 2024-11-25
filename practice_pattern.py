@@ -1,11 +1,20 @@
 import sys
 class GetInput:
-    @staticmethod
-    def get_input():
-        n, m = map(int, sys.stdin.readline().split())
+    def __init__(self):
+        self.n = 0
+        self.m = 0
+
+    def get_input(self):
+        print("n(row)과 m(col)을 숫자로 입력 → ", end="", flush=True)
+        self.n, self.m = map(int, sys.stdin.readline().split())
+        print("solution 타입을 영어로 입력(spiral, diag) → ", end="", flush=True)
         sol_type = sys.stdin.readline().strip()
-        board = [[0] * m for _ in range(n)]
-        return n, m, sol_type, board
+        board = self.created_map()
+        return self.n, self.m, sol_type, board
+    
+    def created_map(self):
+        board = [[0] * self.m for _ in range(self.n)]
+        return board
 
 class solution1:
     def __init__(self, n, m, board):
@@ -66,7 +75,9 @@ class solution2:
         return self.board
 
 def main():
-    n, m, sol_type, board = GetInput.get_input()
+    # n, m, sol_type, board = GetInput.get_input() 
+    input_handler = GetInput() # 인스턴스를 생성해야함
+    n, m, sol_type, board = input_handler.get_input()
     
     spiral = solution1(n, m, board)
     diag = solution2(n, m, board)
