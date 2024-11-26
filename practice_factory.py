@@ -1,14 +1,13 @@
 import sys
 from abc import ABC, abstractmethod
 
-# 객체 생성 담당
-class Factory(ABC):
-    @abstractmethod
-    def create_solution(self, n, m, board, sol_type):
-        pass
+# 추상 클래스 생성
+# class Factory(ABC):
+#     @abstractmethod
+#     def create_solution(self, n, m, board, sol_type):
+#         pass
 
-# 팩토리 상속받기
-class GetInput(Factory):
+class GetInput:
     def __init__(self):
         self.n = 0
         self.m = 0
