@@ -1,12 +1,14 @@
 import sys
 from abc import ABC, abstractmethod
 
+# 객체 생성 담당
 class Factory(ABC):
     @abstractmethod
-    def create_solution(self, n, m, board):
+    def create_solution(self, n, m, board, sol_type):
         pass
 
-class GetInput:
+# 팩토리 상속받기
+class GetInput(Factory):
     def __init__(self):
         self.n = 0
         self.m = 0
@@ -18,20 +20,20 @@ class GetInput:
         sol_type = sys.stdin.readline().strip()
         board = self.created_map()
 
-        solution = self.create_sol(self.n, self.m, board, sol_type)
+        solution = self.create_solution(self.n, self.m, board, sol_type)
         return solution
     
     def created_map(self):
         board = [[0] * self.m for _ in range(self.n)]
         return board
 
-    def create_sol(self, n, m, board, sol_type):
+    def create_solution(self, n, m, board, sol_type):
         if sol_type == 'spiral':
             return solution1(n, m, board)
         elif sol_type == 'diag':
             return solution2(n, m, board)
         else:
-            return ValueError("아직 생성되지 않은 타입")
+            raise ValueError("아직 생성되지 않은 타입")
 
 class solution1: # spiral
     def __init__(self, n, m, board):
