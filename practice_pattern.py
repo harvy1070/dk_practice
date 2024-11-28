@@ -1,4 +1,5 @@
 import sys
+
 class GetInput:
     def __init__(self):
         self.n = 0

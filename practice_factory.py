@@ -94,19 +94,20 @@ class solution2: # diag
         return self.board
 
 def main():
-    input_handler = GetInput()
-    solution = input_handler.get_input()
+    try:
+        input_handler = GetInput()
+        solution = input_handler.get_input()
 
-    # if sol_type == 'spiral':
-    if isinstance(solution, solution1):
-        print("===== Spiral =====")
-        print(solution.spiral_al())
-    # elif sol_type == 'diag':
-    elif isinstance(solution, solution2):
-        print("=====  Diag  =====")
-        print(solution.diag_al())
-    else:
-        print("===== 아직 생성되지 않은 형태 =====")
+        if isinstance(solution, solution1):
+            print("===== Spiral =====")
+            print(solution.spiral_al())
+
+        elif isinstance(solution, solution2):
+            print("=====  Diag  =====")
+            print(solution.diag_al())
+
+    except ValueError as e:
+        print(e)
 
 if __name__ == "__main__":
     main()
