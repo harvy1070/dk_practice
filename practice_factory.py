@@ -29,9 +29,9 @@ class GetInput:
 
     def create_solution(self, n, m, board, sol_type):
         if sol_type == 'spiral':
-            return "spiral", solution1(n, m, board).spiral_al() # 계산 결과를 바로 받도록 수정
+            return "spiral", solution1(n, m, board).spiral_al()
         elif sol_type == 'diag':
-            return "diag", solution2(n, m, board).diag_al() # 계산 결과를 바로 받도록 수정
+            return "diag", solution2(n, m, board).diag_al()
         else:
             raise ValueError("아직 생성되지 않은 타입")
 
