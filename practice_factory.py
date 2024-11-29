@@ -29,9 +29,9 @@ class GetInput:
 
     def create_solution(self, n, m, board, sol_type):
         if sol_type == 'spiral':
-            return solution1(n, m, board)
+            return "spiral", solution1(n, m, board).spiral_al() # 계산 결과를 바로 받도록 수정
         elif sol_type == 'diag':
-            return solution2(n, m, board)
+            return "diag", solution2(n, m, board).diag_al() # 계산 결과를 바로 받도록 수정
         else:
             raise ValueError("아직 생성되지 않은 타입")
 
@@ -96,15 +96,21 @@ class solution2: # diag
 def main():
     try:
         input_handler = GetInput()
-        solution = input_handler.get_input()
+        sol_type, solution = input_handler.get_input()
 
-        if isinstance(solution, solution1):
+        # if isinstance(solution, solution1):
+        #     print("===== Spiral =====")
+        #     print(solution.spiral_al())
+
+        # elif isinstance(solution, solution2):
+        #     print("=====  Diag  =====")
+        #     print(solution.diag_al())
+
+        if sol_type == "spiral":
             print("===== Spiral =====")
-            print(solution.spiral_al())
-
-        elif isinstance(solution, solution2):
+        elif sol_type == "diag":
             print("=====  Diag  =====")
-            print(solution.diag_al())
+        print(solution)
 
     except ValueError as e:
         print(e)
