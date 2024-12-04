@@ -17,12 +17,11 @@ class Owner(Observer):
         if m_type == 'driver_status':
             print(f"차 주인 확인 : {message}")
 
-class Car(ABC):
+# 옵저버 코드 분리
+class Ob_menu(ABC):
     def __init__(self):
-        self.driver = None
-        self.model = None
-        self.observers = [] # 옵저버들 저장 리스트
-    
+        self.observers = []
+
     # 옵저버를 관리하는 메서드들
     def attach(self, observer:Observer):
         self.observers.append(observer)
@@ -33,6 +32,13 @@ class Car(ABC):
     def notice(self, message: str, m_type: str):
         for ob in self.observers:
             ob.update(message, m_type)
+
+class Car(Ob_menu, ABC):
+    def __init__(self):
+        super().__init__() # Ob_menu의 init 호출
+        self.driver = None
+        self.model = None
+        # self.observers = [] # 옵저버들 저장 리스트
 
     # 기존 템플릿 메서드 부분은 그대로 내비둠
     def drive_process(self, driver):
