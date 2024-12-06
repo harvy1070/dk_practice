@@ -1,5 +1,5 @@
 import sys
-from abc import ABC, abstractmethod
+# from abc import ABC, abstractmethod
 
 # 추상 클래스 생성
 # 입력은 n, m, type을 고정으로 해도될 것 같기에 삭제
