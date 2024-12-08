@@ -25,7 +25,7 @@ class B_Validator:
     # @staticmethod
     def val_size(cls, n, m):
         if n < cls.min_size or m < cls.min_size:
-            raise ValueError("보드 크기(n, m)는 {cls.min_size} 이상을 입력해야 함")
+            raise ValueError(f"보드 크기(n, m)는 {cls.min_size} 이상을 입력해야 함")
         return True
 
 # 패턴 검증(유효한 패턴)
@@ -49,33 +49,88 @@ class PatternAd:
 
 # 패턴 생성(나선형)
 class SpiralGen:
-    pass
+    def __init__(self, n, m, board):
+        self.n = n
+        self.m = m
+        self.board = board
+    
+    def spiral_al(self):
+        x, y = 0, 0
+        dir = 0
+        num = 1  
+
+        dx = [0, 1, 0, -1]
+        dy = [1, 0, -1, 0]
+
+        while num <= self.m * self.n:
+            self.board[x][y] = num
+            nx = x + dx[dir]
+            ny = y + dy[dir]
+
+            if (nx < 0 or nx >= self.n or ny < 0 or ny >= self.m or self.board[nx][ny] != 0):
+                dir = (dir + 1) % 4
+                nx = x + dx[dir]
+                ny = y + dy[dir]
+
+            x, y = nx, ny
+            num += 1
+
+        return self.board
 
 # 패턴 생성(대각선)
 class DiagGen:
-    pass
+    def __init__(self, n, m, board):
+        self.n = n
+        self.m = m
+        self.board = board
+
+    def diag_al(self):
+        num = 1
+        tot_diag = self.n + self.m - 1
+
+        for diag in range(tot_diag):
+            fill = []
+
+            for r in range(self.n):
+                c = diag - r
+
+                if 0 <= c < self.m:
+                    fill.append((r, c))
+
+            if diag % 2 != 0:
+                fill.sort()
+            else:
+                fill.sort(reverse=True)
+
+            for r, c in fill:
+                self.board[r][c] = num
+                num += 1
+        return self.board
 
 # 출력
 class OutputHandler:
     pass
 
 def main():
-    # 보드 크기 입력
-    input_handler = GetInput()
-    n, m = input_handler.get_board_size()
-    
-    # 보드 숫자 검증
-    B_Validator.val_size(n, m)
-    
-    # 패턴 타입 입력
-    p_handler = PatternAd(n, m)
-    
-    # 패턴 타입 검증
-    P_Validator.val_pattern(p_handler)
-    
-    # 패턴 생성
-    
-    # 결과 출력
+    try:
+        # 보드 크기 입력
+        input_handler = GetInput()
+        n, m = input_handler.get_board_size()
+        
+        # 보드 숫자 검증
+        B_Validator.val_size(n, m)
+        
+        # 패턴 타입 입력
+        p_handler = PatternAd(n, m)
+        
+        # 패턴 타입 검증
+        P_Validator.val_pattern(p_handler)
+        
+        # 패턴 생성
+        
+        # 결과 출력
+    except ValueError as e:
+        print(e)
         
 if __name__ == "__main__":
     main()
