@@ -19,7 +19,11 @@ class GetInput:
 
 # n, m 값 검증(3 이상)
 class B_Validator:
-    pass
+    @staticmethod
+    def val_size(n, m):
+        if n < 3 or m < 3:
+            raise ValueError("보드 크기(n, m)는 3 이상을 입력해야 함")
+        return True
 
 # 패턴 검증(유효한 패턴)
 class P_Validator:
@@ -44,3 +48,26 @@ class DiagGen:
 # 출력
 class OutputHandler:
     pass
+
+def main():
+    try:
+        # 보드 크기 입력
+        input_handler = GetInput()
+        n, m = input_handler.get_board_size()
+        
+        # 보드 숫자 검증
+        B_Validator.val_size(n, m)
+        
+        # 패턴 타입 입력
+        
+        # 패턴 타입 검증
+        
+        # 패턴 생성
+        
+        # 결과 출력
+        
+    except ValueError as ve:
+        print(ve)
+        
+if __name__ == "__main__":
+    main()
