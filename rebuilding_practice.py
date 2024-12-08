@@ -41,11 +41,23 @@ class P_Validator:
         
 # n x m 크기의 보드 생성
 class BoardGen:
-    pass
+    @staticmethod
+    def create_board(n, m):
+        return [[0] * m for _ in range(n)]
 
 # 패턴 관리
 class PatternAd:
-    pass
+    def __init__(self, n, m, board):
+        self.n = n
+        self.m = m
+        self.board = board
+        
+    def gen_pattern(self, p_type):
+        if p_type == 'spiral':
+            return SpiralGen(self.n, self.m, self.board).spiral_al()
+        elif p_type == 'diag':
+            return DiagGen(self.n, self.m, self.board).diag_al()
+        # 여기에 계속 추가
 
 # 패턴 생성(나선형)
 class SpiralGen:
@@ -121,14 +133,17 @@ def main():
         B_Validator.val_size(n, m)
         
         # 패턴 타입 입력
-        p_handler = PatternAd(n, m)
+        p_type = input_handler.get_p_type()
         
         # 패턴 타입 검증
-        P_Validator.val_pattern(p_handler)
+        P_Validator.val_pattern(p_type)
         
         # 패턴 생성
+        p_created = PatternAd(n, m)
         
         # 결과 출력
+        result = p_created.generate_pattern(p_type)
+        
     except ValueError as e:
         print(e)
         
