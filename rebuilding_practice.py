@@ -9,18 +9,13 @@ class GetInput:
 
     def get_board_size(self):
         print("n(row)과 m(col)을 3 이상의 숫자로 입력 → ", end="", flush=True)
-        try:
-            self.n, self.m = map(int, sys.stdin.readline().split())
-            return self.n, self.m
-        except ValueError:
-            raise ValueError("숫자를 입력해주세요.")
+        self.n, self.m = map(int, sys.stdin.readline().split())
+        return self.n, self.m
         
     def get_p_type(self):
         print("solution 타입을 영어로 입력(spiral, diag) → ", end="", flush=True)
-        try:
-            self.p_type = sys.stdin.readline().strip()
-        except TypeError:
-            raise TypeError("유효한 타입이 아닙니다.")
+        self.p_type = sys.stdin.readline().strip()
+        return self.p_type
 
 # n, m 값 검증(3 이상)
 class B_Validator:
