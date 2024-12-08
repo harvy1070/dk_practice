@@ -19,16 +19,26 @@ class GetInput:
 
 # n, m 값 검증(3 이상)
 class B_Validator:
-    @staticmethod
-    def val_size(n, m):
-        if n < 3 or m < 3:
-            raise ValueError("보드 크기(n, m)는 3 이상을 입력해야 함")
+    min_size = 3
+    
+    @classmethod
+    # @staticmethod
+    def val_size(cls, n, m):
+        if n < cls.min_size or m < cls.min_size:
+            raise ValueError("보드 크기(n, m)는 {cls.min_size} 이상을 입력해야 함")
         return True
 
 # 패턴 검증(유효한 패턴)
 class P_Validator:
-    pass
-
+    val_pattern = ['spiral', 'diag']
+    
+    # cls로 클래스를 참조(val_pattern)하여 비교
+    @classmethod
+    def val_p(cls, p_type):
+        if p_type not in cls.val_pattern:
+            raise ValueError(f"유효한 패턴 타입이 아님, 가능한 패턴 => {cls.val_pattern}")
+        return True
+        
 # n x m 크기의 보드 생성
 class BoardGen:
     pass
@@ -50,24 +60,22 @@ class OutputHandler:
     pass
 
 def main():
-    try:
-        # 보드 크기 입력
-        input_handler = GetInput()
-        n, m = input_handler.get_board_size()
-        
-        # 보드 숫자 검증
-        B_Validator.val_size(n, m)
-        
-        # 패턴 타입 입력
-        
-        # 패턴 타입 검증
-        
-        # 패턴 생성
-        
-        # 결과 출력
-        
-    except ValueError as ve:
-        print(ve)
+    # 보드 크기 입력
+    input_handler = GetInput()
+    n, m = input_handler.get_board_size()
+    
+    # 보드 숫자 검증
+    B_Validator.val_size(n, m)
+    
+    # 패턴 타입 입력
+    p_handler = PatternAd(n, m)
+    
+    # 패턴 타입 검증
+    P_Validator.val_pattern(p_handler)
+    
+    # 패턴 생성
+    
+    # 결과 출력
         
 if __name__ == "__main__":
     main()
