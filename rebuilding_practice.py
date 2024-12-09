@@ -121,7 +121,10 @@ class DiagGen:
 
 # 출력
 class OutputHandler:
-    pass
+    @staticmethod
+    def print_result(board):
+        for row in board:
+            print(' '.join(f'{r:3}' for r in row))
 
 def main():
     try:
@@ -144,10 +147,12 @@ def main():
         # 패턴 생성
         p_created = PatternAd(n, m, board)
         
-        # 결과 출력
+        # 결과 저장
         result = p_created.gen_pattern(p_type)
-
-        print(result)
+        # print(result)
+        
+        # 결과 출력
+        OutputHandler.print_result(result)
         
     except ValueError as e:
         print(e)
