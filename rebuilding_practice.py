@@ -132,17 +132,22 @@ def main():
         # 보드 숫자 검증
         B_Validator.val_size(n, m)
         
+        # 보드 생성
+        board = BoardGen.create_board(n, m)
+
         # 패턴 타입 입력
         p_type = input_handler.get_p_type()
         
         # 패턴 타입 검증
-        P_Validator.val_pattern(p_type)
+        P_Validator.val_p(p_type)
         
         # 패턴 생성
-        p_created = PatternAd(n, m)
+        p_created = PatternAd(n, m, board)
         
         # 결과 출력
-        result = p_created.generate_pattern(p_type)
+        result = p_created.gen_pattern(p_type)
+
+        print(result)
         
     except ValueError as e:
         print(e)
