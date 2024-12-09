@@ -30,14 +30,18 @@ class B_Validator:
 
 # 패턴 검증(유효한 패턴)
 class P_Validator:
-    val_pattern = ['spiral', 'diag']
+    all_pattern = ['spiral', 'diag']
     
     # cls로 클래스를 참조(val_pattern)하여 비교
     @classmethod
-    def val_p(cls, p_type):
-        if p_type not in cls.val_pattern:
-            raise ValueError(f"유효한 패턴 타입이 아님, 가능한 패턴 => {cls.val_pattern}")
+    def val_pattern(cls, p_type):
+        if p_type not in cls.all_pattern:
+            raise ValueError(f"유효한 패턴 타입이 아님, 가능한 패턴 => {cls.all_pattern}")
         return True
+    
+    @classmethod
+    def get_val_pattern(cls):
+        return cls.all_pattern
         
 # n x m 크기의 보드 생성
 class BoardGen:
@@ -123,8 +127,10 @@ class DiagGen:
 class OutputHandler:
     @staticmethod
     def print_result(board):
+        print("======== 결과 출력 ========")
         for row in board:
             print(' '.join(f'{r:3}' for r in row))
+        print("===========================")
 
 def main():
     try:
@@ -142,7 +148,7 @@ def main():
         p_type = input_handler.get_p_type()
         
         # 패턴 타입 검증
-        P_Validator.val_p(p_type)
+        P_Validator.val_pattern(p_type)
         
         # 패턴 생성
         p_created = PatternAd(n, m, board)
@@ -150,7 +156,7 @@ def main():
         # 결과 저장
         result = p_created.gen_pattern(p_type)
         # print(result)
-        
+
         # 결과 출력
         OutputHandler.print_result(result)
         
