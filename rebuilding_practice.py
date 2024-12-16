@@ -126,12 +126,14 @@ class DiagGen:
 # 출력
 class OutputHandler:
     @staticmethod
-    def print_result(board):
+    def print_result(n, m, p_type, board):
+        print(f"입력값 → n : {n} m : {m}, 패턴 타입 → {p_type}")
         print("======== 결과 출력 ========")
         for row in board:
             print(' '.join(f'{r:3}' for r in row))
         print("===========================")
 
+# 메인 함수
 def main():
     try:
         # 보드 크기 입력
@@ -158,7 +160,7 @@ def main():
         # print(result)
 
         # 결과 출력
-        OutputHandler.print_result(result)
+        OutputHandler.print_result(n, m, p_type, result)
         
     except ValueError as e:
         print(e)
