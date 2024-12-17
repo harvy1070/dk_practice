@@ -64,6 +64,7 @@ class SafetyInspect(CarInspector):
         else: sf_score = "도색 필요"
         return f"도색 점검 : {sf_score}"
     
+# 메인 안전 진단
 class MainInspector(CarInspector):
     def visit_engine(self, engine):
         if engine.condition < 90:
