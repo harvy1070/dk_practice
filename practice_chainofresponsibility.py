@@ -50,6 +50,9 @@ class ServiceCenter:
         self.safety = SafetyInspectionHandler()
         self.performance = PerformanceInspectionHandler()
 
+        # 체인 연결
+        self.basic.set_next(self.safety).set_next(self.performance)
+
     def inspect_car(self, car, issue):
         result = self.basic.handle(car, issue)
         if result:
