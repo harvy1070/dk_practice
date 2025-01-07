@@ -1,3 +1,5 @@
+import sys
+
 # 서브 시스템들
 class Movie:
     def checkmovie(self, movie_id):
@@ -67,16 +69,24 @@ class MovieFacade:
 if __name__ == "__main__":
     movie_system = MovieFacade()
 
-    movie_system.MovieProcess(
-        user_id = "harvy1",
-        movie_id = "범죄도시5",
-        seat_id = "A1",
-        amount = 15000
-    )
+    print("\n === 영화 예매 시스템 시작 === ")
+    
+    print("사용자 ID 입력 ▶ ", end = '', flush=True)
+    user_id = sys.stdin.readline().strip()
+    print(f"입력된 아이디 ▶ {user_id}")
+
+    print("영화 제목 입력 ▶ ", end = '', flush=True)
+    movie_id = sys.stdin.readline().strip()
+
+    print("좌석 번호 입력(A1 ~ Z12) ▶ ", end = '', flush=True)
+    seat_id = sys.stdin.readline().strip()
+
+    print("결제 금액 입력 ▶ ", end = '', flush=True)
+    amount = int(sys.stdin.readline().strip())
 
     movie_system.MovieProcess(
-        user_id = "harvy2",
-        movie_id = "범죄도시5",
-        seat_id = "J12",
-        amount = 15000
+        user_id=user_id,
+        movie_id=movie_id,
+        seat_id=seat_id,
+        amount=amount
     )

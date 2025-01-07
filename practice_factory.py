@@ -101,8 +101,6 @@ def main():
         # if isinstance(solution, solution1):
         #     print("===== Spiral =====")
         #     print(solution.spiral_al())
-
-        # elif isinstance(solution, solution2):
         #     print("=====  Diag  =====")
         #     print(solution.diag_al())
 
