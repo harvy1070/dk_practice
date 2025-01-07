@@ -1,16 +1,25 @@
 # 서브 시스템들
 class Movie:
     def checkmovie(self, movie_id):
+        if movie_id == "종영영화":
+            print(f"{movie_id}는 상영이 종료된 상태입니다.")
+            return False
         print(f"영화 {movie_id}의 상영 가능 여부 확인")
         return True
 
 class Payment:
     def checkpayment(self, amount):
+        if amount > 20000:
+            print(f"{amount}원은 한도 초과입니다.")
+            return False
         print(f"{amount}원 결제 완료")
         return True
 
 class Seat:
     def checkseat(self, seat_id):
+        if seat_id == "A1":
+            print((f"{seat_id}는 이미 예약된 좌석입니다."))
+            return False
         print(f"{seat_id} 좌석 예약 완료")
         return True
 
@@ -59,7 +68,14 @@ if __name__ == "__main__":
     movie_system = MovieFacade()
 
     movie_system.MovieProcess(
-        user_id = "harvy",
+        user_id = "harvy1",
+        movie_id = "범죄도시5",
+        seat_id = "A1",
+        amount = 15000
+    )
+
+    movie_system.MovieProcess(
+        user_id = "harvy2",
         movie_id = "범죄도시5",
         seat_id = "J12",
         amount = 15000
