@@ -73,7 +73,7 @@ if __name__ == "__main__":
     
     print("사용자 ID 입력 ▶ ", end = '', flush=True)
     user_id = sys.stdin.readline().strip()
-    print(f"입력된 아이디 ▶ {user_id}")
+    # print(f"입력된 아이디 ▶ {user_id}")
 
     print("영화 제목 입력 ▶ ", end = '', flush=True)
     movie_id = sys.stdin.readline().strip()
